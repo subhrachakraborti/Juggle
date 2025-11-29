@@ -4,7 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
-  title: 'Juggle Fin-Service',
+  title: 'Juggle Fintech',
   description: 'Stop juggling finances. Start living.',
 };
 
