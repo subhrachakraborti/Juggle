@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 180 65% 92.5%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 180 65% 98%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 180 65% 98%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 180 100% 25%;
+    --primary-foreground: 180 100% 95%;
+    --secondary: 180 20% 90%;
+    --secondary-foreground: 224 71.4% 4.1%;
+    --muted: 180 20% 90%;
+    --muted-foreground: 224 71.4% 35%;
+    --accent: 75 100% 50%;
+    --accent-foreground: 75 100% 5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 20% 80%;
+    --input: 180 20% 85%;
+    --ring: 180 100% 25.1%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 180 10% 10%;
+    --foreground: 180 10% 80%;
+    --card: 180 10% 15%;
+    --card-foreground: 180 10% 80%;
+    --popover: 180 10% 10%;
+    --popover-foreground: 180 10% 80%;
+    --primary: 180 100% 35.1%;
+    --primary-foreground: 180 100% 95%;
+    --secondary: 180 10% 20%;
+    --secondary-foreground: 180 10% 80%;
+    --muted: 180 10% 20%;
+    --muted-foreground: 180 10% 50%;
+    --accent: 75 100% 55%;
+    --accent-foreground: 75 100% 5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 10% 25%;
+    --input: 180 10% 25%;
+    --ring: 180 100% 35.1%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}

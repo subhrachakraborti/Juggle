@@ -1,0 +1,71 @@
+{
+    "birthdays": [
+        {
+            "id": "bd-1",
+            "name": "ZEBRONICS Duke wireless Headphones",
+            "price": 999.00,
+            "picture": "https://m.media-amazon.com/images/I/61CTGoZ5woL._SY450_.jpg",
+            "buyLink": "https://amzn.in/d/9Sw5rGm"
+        },
+        {
+            "id": "bd-2",
+            "name": "Smart Watch",
+            "price": 999.99,
+            "picture": "https://m.media-amazon.com/images/I/61CTGoZ5woL._SY450_.jpg",
+            "buyLink": "https://amzn.in/d/9KmK5o4"
+        },
+        {
+            "id": "bd-3",
+            "name": "Gift Card",
+            "price": 1000.00,
+            "picture": "https://m.media-amazon.com/images/I/41FfqnpPLXL.jpg",
+            "buyLink": "https://amzn.in/d/7noIpAz"
+        }
+    ],
+    "anniversaries": [
+        {
+            "id": "an-1",
+            "name": "Romantic Dinner Set",
+            "price": 1299.00,
+            "picture": "https://m.media-amazon.com/images/I/71pYxlDUp5L._SX679_.jpg",
+            "buyLink": "https://amzn.in/d/7xwBnZb"
+        },
+        {
+            "id": "an-2",
+            "name": "Jewelry Box",
+            "price": 2259.00,
+            "picture": "https://m.media-amazon.com/images/I/51bxyafnQmL._SY575_.jpg",
+            "buyLink": "https://amzn.in/d/hLKxtVp"
+        },
+        {
+            "id": "an-3",
+            "name": "Couple's Spa Set",
+            "price": 2250.00,
+            "picture": "https://m.media-amazon.com/images/I/71utx78CP3L._SX522_.jpg",
+            "buyLink": "https://amzn.in/d/5RjdTIx"
+        }
+    ],
+    "weddings": [
+        {
+            "id": "wd-1",
+            "name": "Kitchen Appliance Set",
+            "price": 1627.00,
+            "picture": "https://m.media-amazon.com/images/I/71n60BBalEL._SX679_.jpg",
+            "buyLink": "https://amzn.in/d/g5Dd0Dm"
+        },
+        {
+            "id": "wd-2",
+            "name": "Luxury Bedding Set",
+            "price": 3655.00,
+            "picture": "https://m.media-amazon.com/images/I/41pCtT6tX4L._SY300_SX300_QL70_FMwebp_.jpg",
+            "buyLink": "https://amzn.in/d/gRIcANb"
+        },
+        {
+            "id": "wd-3",
+            "name": "Home Decor Package",
+            "price": 999.00,
+            "picture": "https://m.media-amazon.com/images/I/41EQ-tWIOCL._SY300_SX300_QL70_FMwebp_.jpg",
+            "buyLink": "https://amzn.in/d/ewyO7DQ"
+        }
+    ]
+}
