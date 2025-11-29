@@ -1,12 +1,14 @@
 'use client';
 
 import {
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider,
   signOut as firebaseSignOut,
   onIdTokenChanged,
   getAdditionalUserInfo,
-  type UserCredential
+  type UserCredential,
+  type OAuthCredential
 } from 'firebase/auth';
 import { useFirebase, useUser } from '@/firebase';
 import { useRouter } from 'next/navigation';
@@ -20,11 +22,37 @@ export function useAuth() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [tokenLoading, setTokenLoading] = useState(true);
 
+  const handleSignIn = useCallback(async (credential: UserCredential) => {
+    const additionalInfo = getAdditionalUserInfo(credential);
+    if (additionalInfo?.providerId === 'google.com') {
+      const oauthCredential = GoogleAuthProvider.credentialFromResult(credential);
+      const token = oauthCredential?.accessToken;
+      if (token) {
+        setAccessToken(token);
+        sessionStorage.setItem('google-access-token', token);
+      }
+    }
+    router.push('/home');
+  }, [router]);
+
   useEffect(() => {
     if (!auth) {
       setTokenLoading(false);
       return;
     }
+
+    // Check for redirect result on mount
+    const checkRedirectResult = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result) {
+          await handleSignIn(result);
+        }
+      } catch (error) {
+        console.error('Error handling redirect result:', error);
+      }
+    };
+    checkRedirectResult();
 
     const unsubscribe = onIdTokenChanged(auth, async (user) => {
       if (user) {
@@ -50,19 +78,7 @@ export function useAuth() {
     });
 
     return () => unsubscribe();
-  }, [auth]);
-
-  const handleSignIn = useCallback(async (credential: UserCredential) => {
-    const additionalInfo = getAdditionalUserInfo(credential);
-    if (additionalInfo?.providerId === 'google.com') {
-      const token = (credential.credential as any)?.accessToken;
-      if (token) {
-        setAccessToken(token);
-        sessionStorage.setItem('google-access-token', token);
-      }
-    }
-    router.push('/home');
-  }, [router]);
+  }, [auth, handleSignIn]);
 
   const signInWithGoogle = async () => {
     if (!auth) return;
@@ -70,8 +86,8 @@ export function useAuth() {
     const provider = new GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/calendar.readonly');
     try {
-      const credential = await signInWithPopup(auth, provider);
-      await handleSignIn(credential);
+      await signInWithRedirect(auth, provider);
+      // User will be redirected, no need to handle result here
     } catch (error) {
       console.error('Error signing in with Google:', error);
       setTokenLoading(false);
