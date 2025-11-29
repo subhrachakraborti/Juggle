@@ -85,9 +85,10 @@ export default function TransactionsPage() {
       try {
         const token = await createLinkToken(idToken);
         setLinkToken(token);
-      } catch (e) {
+      } catch (e: any) {
         console.error('Error creating link token:', e);
-        setError('Could not initialize Plaid. Please refresh the page.');
+        const errorMsg = e.message || 'Could not initialize Plaid. Please refresh the page.';
+        setError(errorMsg);
       }
 
       if (isPlaidConnected) {

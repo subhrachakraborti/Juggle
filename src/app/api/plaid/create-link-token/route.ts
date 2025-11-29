@@ -16,6 +16,15 @@ const plaidClient = new PlaidApi(configuration);
 
 export async function POST(request: NextRequest) {
     try {
+        // Check if Plaid credentials are configured
+        if (!process.env.NEXT_PUBLIC_PLAID_CLIENT_ID || !process.env.PLAID_SECRET) {
+            console.error('Plaid credentials not configured');
+            return NextResponse.json(
+                { error: 'Plaid is not configured. Please add PLAID_CLIENT_ID and PLAID_SECRET to your environment variables.' },
+                { status: 500 }
+            );
+        }
+
         const authHeader = request.headers.get('Authorization');
         if (!authHeader) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -37,8 +46,9 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ link_token: tokenResponse.data.link_token });
     } catch (error: any) {
         console.error('Error creating link token:', error);
+        const errorMessage = error.response?.data?.error_message || error.message || 'Unknown error';
         return NextResponse.json(
-            { error: 'Failed to create link token', details: error.message },
+            { error: 'Failed to create link token', details: errorMessage },
             { status: 500 }
         );
     }
